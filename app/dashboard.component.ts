@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._heroService.getTopHeroes().then(heroes => {
+    this._heroService.getTopHeroes().subscribe(heroes => {
       this.heroes = heroes;
     });
   }

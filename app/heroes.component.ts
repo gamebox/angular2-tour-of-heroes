@@ -83,9 +83,11 @@ export class HeroesComponent implements OnInit {
   }
 
   getHeroes() {
-    this._heroService.getHeroes().then(heroes => {
-      this.heroes = heroes;
-    });
+    console.log("Component getHeroes called");
+    this._heroService
+        .getHeroes()
+        .subscribe(heroes => this.heroes = heroes,
+                   error  => { throw new Error(error); });
   }
 
   onHeroClick(hero: Hero) {
