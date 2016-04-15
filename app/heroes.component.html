@@ -1,0 +1,13 @@
+<h1>{{title}}</h1>
+<h2>My Heroes</h2>
+<ul class="heroes">
+  <h3 *ngIf="!heroes">Loading...</h3>
+  <li *ngFor="#hero of heroes"
+      (click)="onHeroClick(hero)"
+      [class.selected]="hero === selectedHero">
+    <span class="badge">{{hero.id}}</span> {{hero.name}}
+  </li>
+</ul>
+<div class="add-hero">
+  <input #newHeroName placeholder="New Hero Name"><button (click)="addHero(newHeroName)">Add</button>
+</div>

@@ -1,5 +1,5 @@
 import {Injectable}     from 'angular2/core';
-import {Http, Response} from 'angular2/http';
+import {Http, Response, Headers, RequestOptions} from 'angular2/http';
 import {Hero}           from './hero';
 import {Observable}     from 'rxjs/Observable';
 
@@ -41,5 +41,14 @@ export class HeroService {
   getHero(id: number): Observable<Hero> {
     return this.getHeroes()
         .map(heroes => heroes.filter(hero => hero.id === id)[0]);
+  }
+
+  addHero(name: string): Observable<Hero> {
+    let body = JSON.stringify({ name });
+    let headers = new Headers({ 'Content-type': 'application/json' });
+    let options = new RequestOptions({ headers });
+    return this.http.post(this._heroesUrl, body, options)
+                    .map(this.extractData)
+                    .catch(this.handleError)
   }
 }

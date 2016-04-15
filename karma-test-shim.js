@@ -51,20 +51,18 @@ System.import('angular2/testing')
         );
       });
   })
-
-// Load all spec files
-// (e.g. 'base/app/hero.service.spec.js')
-.then(function () {
-  return Promise.all(
-    Object.keys(window.__karma__.files)
+  // Load all spec files
+  // (e.g. 'base/app/hero.service.spec.js')
+  .then(function () {
+    return Promise.all(
+      Object.keys(window.__karma__.files)
       .filter(onlySpecFiles)
       .map(function (moduleName) {
         moduleNames.push(moduleName);
         return System.import(moduleName);
       }));
-})
-
-.then(success, fail);
+  })
+  .then(success, fail);
 
 ////// Helpers //////
 
